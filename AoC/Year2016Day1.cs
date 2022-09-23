@@ -61,7 +61,7 @@ namespace AoC
             public void Move()
             {
                 Coords v = dirVectors[_direction];
-                _position = new Coords(_position.X + v.X, _position.Y + v.Y);
+                _position = _position + v;
             }
 
             public void Move(int steps)
@@ -81,8 +81,16 @@ namespace AoC
             }
         }
 
+        private string[] ParseInput()
+        {
+            return _text.Split(", ");
+        }
+
         override public int SolvePart1()
         {
+            var inp = ParseInput();
+            var startPos = new Coords(0, 0);
+            Debug.WriteLine(inp[0]);
             var w = new Walker(x: 0, y: 0, dir: Direction.North);
             w.Turn("Left");
             Debug.WriteLine(w.Direction);
@@ -90,7 +98,7 @@ namespace AoC
             Debug.WriteLine(w.Position);
             w.Move("R5");
             Debug.WriteLine(w.Position);
-            return 0;
+            return Coords.ManhDist(w.Position, startPos);
         }
 
         override public int SolvePart2()
