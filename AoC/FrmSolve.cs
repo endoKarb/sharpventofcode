@@ -20,14 +20,6 @@ namespace AoC
             CboYear.SelectedIndex = 0;
             CboDay.SelectedIndex = 0;
         }
-
-        private void BtnInputFile_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                BtnSolve.Enabled = true;
-            }
-        }
         static ISolver CreateSolver(string year, string day, string inputPath)
         {
             Type t = Type.GetType($"AoC.Year{year}{day}");
@@ -37,14 +29,33 @@ namespace AoC
             return (ISolver)s;
         }
 
+        private void BtnInputFile_Click(object sender, EventArgs e)
+        {
+            if (OfdInputFile.ShowDialog() == DialogResult.OK)
+            {
+                BtnSolve.Enabled = true;
+                BtnSolvePart2.Enabled = true;
+            }
+        }
+        
         private void BtnSolve_Click(object sender, EventArgs e)
         {
             string year = CboYear.GetItemText(CboYear.SelectedItem);
             string day = CboDay.GetItemText(CboDay.SelectedItem);
             day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
-            string path = openFileDialog1.FileName;
+            string path = OfdInputFile.FileName;
             var slv = CreateSolver(year, day, path);
-            TxtResult.Text = $"{slv.SolvePart1()}";
+            TxtPart1.Text = $"{slv.SolvePart1()}";
+        }
+
+        private void BtnSolvePart2_Click(object sender, EventArgs e)
+        {
+            string year = CboYear.GetItemText(CboYear.SelectedItem);
+            string day = CboDay.GetItemText(CboDay.SelectedItem);
+            day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
+            string path = OfdInputFile.FileName;
+            var slv = CreateSolver(year, day, path);
+            TxtPart2.Text = $"{slv.SolvePart2()}";
         }
     }
 }

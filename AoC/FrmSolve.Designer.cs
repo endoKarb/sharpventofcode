@@ -30,10 +30,14 @@
         {
             this.CboYear = new System.Windows.Forms.ComboBox();
             this.CboDay = new System.Windows.Forms.ComboBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.OfdInputFile = new System.Windows.Forms.OpenFileDialog();
             this.BtnInputFile = new System.Windows.Forms.Button();
             this.BtnSolve = new System.Windows.Forms.Button();
-            this.TxtResult = new System.Windows.Forms.TextBox();
+            this.TxtPart1 = new System.Windows.Forms.TextBox();
+            this.TxtPart2 = new System.Windows.Forms.TextBox();
+            this.LblPart1 = new System.Windows.Forms.Label();
+            this.LblPart2 = new System.Windows.Forms.Label();
+            this.BtnSolvePart2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CboYear
@@ -58,9 +62,9 @@
             this.CboDay.Size = new System.Drawing.Size(182, 23);
             this.CboDay.TabIndex = 1;
             // 
-            // openFileDialog1
+            // OfdInputFile
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.OfdInputFile.FileName = "OfdInputFile";
             // 
             // BtnInputFile
             // 
@@ -83,20 +87,61 @@
             this.BtnSolve.UseVisualStyleBackColor = true;
             this.BtnSolve.Click += new System.EventHandler(this.BtnSolve_Click);
             // 
-            // TxtResult
+            // TxtPart1
             // 
-            this.TxtResult.Location = new System.Drawing.Point(308, 200);
-            this.TxtResult.Name = "TxtResult";
-            this.TxtResult.ReadOnly = true;
-            this.TxtResult.Size = new System.Drawing.Size(100, 23);
-            this.TxtResult.TabIndex = 4;
+            this.TxtPart1.Location = new System.Drawing.Point(190, 187);
+            this.TxtPart1.Name = "TxtPart1";
+            this.TxtPart1.ReadOnly = true;
+            this.TxtPart1.Size = new System.Drawing.Size(100, 23);
+            this.TxtPart1.TabIndex = 4;
+            // 
+            // TxtPart2
+            // 
+            this.TxtPart2.Location = new System.Drawing.Point(379, 187);
+            this.TxtPart2.Name = "TxtPart2";
+            this.TxtPart2.ReadOnly = true;
+            this.TxtPart2.Size = new System.Drawing.Size(100, 23);
+            this.TxtPart2.TabIndex = 5;
+            // 
+            // LblPart1
+            // 
+            this.LblPart1.AutoSize = true;
+            this.LblPart1.Location = new System.Drawing.Point(190, 169);
+            this.LblPart1.Name = "LblPart1";
+            this.LblPart1.Size = new System.Drawing.Size(84, 15);
+            this.LblPart1.TabIndex = 6;
+            this.LblPart1.Text = "Part 1 Solution";
+            // 
+            // LblPart2
+            // 
+            this.LblPart2.AutoSize = true;
+            this.LblPart2.Location = new System.Drawing.Point(379, 169);
+            this.LblPart2.Name = "LblPart2";
+            this.LblPart2.Size = new System.Drawing.Size(84, 15);
+            this.LblPart2.TabIndex = 7;
+            this.LblPart2.Text = "Part 2 Solution";
+            // 
+            // BtnSolvePart2
+            // 
+            this.BtnSolvePart2.Enabled = false;
+            this.BtnSolvePart2.Location = new System.Drawing.Point(395, 338);
+            this.BtnSolvePart2.Name = "BtnSolvePart2";
+            this.BtnSolvePart2.Size = new System.Drawing.Size(166, 32);
+            this.BtnSolvePart2.TabIndex = 8;
+            this.BtnSolvePart2.Text = "Solve Part 2";
+            this.BtnSolvePart2.UseVisualStyleBackColor = true;
+            this.BtnSolvePart2.Click += new System.EventHandler(this.BtnSolvePart2_Click);
             // 
             // FrmSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.TxtResult);
+            this.Controls.Add(this.BtnSolvePart2);
+            this.Controls.Add(this.LblPart2);
+            this.Controls.Add(this.LblPart1);
+            this.Controls.Add(this.TxtPart2);
+            this.Controls.Add(this.TxtPart1);
             this.Controls.Add(this.BtnSolve);
             this.Controls.Add(this.BtnInputFile);
             this.Controls.Add(this.CboDay);
@@ -112,9 +157,13 @@
 
         private System.Windows.Forms.ComboBox CboYear;
         private System.Windows.Forms.ComboBox CboDay;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog OfdInputFile;
         private System.Windows.Forms.Button BtnInputFile;
         private System.Windows.Forms.Button BtnSolve;
-        private System.Windows.Forms.TextBox TxtResult;
+        private System.Windows.Forms.TextBox TxtPart1;
+        private System.Windows.Forms.TextBox TxtPart2;
+        private System.Windows.Forms.Label LblPart1;
+        private System.Windows.Forms.Label LblPart2;
+        private System.Windows.Forms.Button BtnSolvePart2;
     }
 }
