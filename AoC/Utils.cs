@@ -39,7 +39,6 @@ namespace AoC
             public static int ManhDist (Coords c1, Coords c2)
             {
                 Coords dist = Abs(c1 - c2);
-                //Debug.WriteLine($"{c1}, {c2}, {dist}");
                 return dist.X + dist.Y;
             }
         }
@@ -52,11 +51,11 @@ namespace AoC
         }
         public static Direction Right (this Direction d)
         {
-            return d == Direction.West ? Direction.North : d++;
+            return d == Direction.West ? Direction.North : (Direction)(((int)d) + 1);
         }
         public static Direction Left(this Direction d)
         {
-            return d == Direction.North ? Direction.West : d--;
+            return d == Direction.North ? Direction.West : (Direction)(((int)d) - 1);
         }
         public static int Mod(int a, int b)
         {
