@@ -1,6 +1,6 @@
 ﻿namespace AoC
 {
-    partial class Form1
+    partial class FrmSolver
     {
         /// <summary>
         ///  Required designer variable.
@@ -82,7 +82,7 @@
             this.BtnSolve.UseVisualStyleBackColor = true;
             this.BtnSolve.Click += new System.EventHandler(this.BtnSolve_Click);
             // 
-            // Form1
+            // FrmSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,8 +91,8 @@
             this.Controls.Add(this.BtnInputFile);
             this.Controls.Add(this.CboDay);
             this.Controls.Add(this.CboYear);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FrmSolver";
+            this.Text = "Advent of Code Solvers Collection";
             this.ResumeLayout(false);
 
         }

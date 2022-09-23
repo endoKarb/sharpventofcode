@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace AoC
 {
-    public partial class Form1 : Form
+    public partial class FrmSolver : Form
     {
-        public Form1()
+        public FrmSolver()
         {
             InitializeComponent();
             CboYear.SelectedIndex = 0;
