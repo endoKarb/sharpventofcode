@@ -18,27 +18,47 @@ namespace AoC
 
         override public int SolvePart1()
         {
-            int answer = 0;
+            int floor = 0;
             for (int i = 0; i < _text.Length; i++)
             {
                 switch (_text[i])
                 {
                     case '(':
-                        answer++;
+                        floor++;
                         break;
                     case ')':
-                        answer--;
+                        floor--;
                         break;
                     default:
                         break;
                 }
             }
-            return answer;
+            return floor;
         }
 
         override public int SolvePart2()
         {
-            return 0;
+            int floor = 0;
+            int i;
+            for (i = 0; i < _text.Length; i++)
+            {
+                if (floor == -1)
+                {
+                    break;
+                }
+                switch (_text[i])
+                {
+                    case '(':
+                        floor++;
+                        break;
+                    case ')':
+                        floor--;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return i;
         }
     }
 }
