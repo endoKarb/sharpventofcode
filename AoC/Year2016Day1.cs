@@ -7,6 +7,7 @@ using System.IO;
 
 using static AoC.Utils;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace AoC
 {
@@ -27,21 +28,6 @@ namespace AoC
             [Direction.East] = new Coords(x: +1, y: 0),
             [Direction.West] = new Coords(x: -1, y: 0),
         };
-
-        struct Coords
-        {
-            public Coords(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-
-            public int X { get; }
-            public int Y { get; }
-        }
-
-
-
         private class Walker
         {
             Coords _position;
@@ -86,6 +72,13 @@ namespace AoC
                     Move(steps - 1);
                 }
             }
+
+            public void Move(string mv)
+            {
+                int steps = int.Parse(Regex.Match(mv, @"\d+").Value);
+                Turn(mv);
+                Move(steps);
+            }
         }
 
         override public int SolvePart1()
@@ -94,6 +87,8 @@ namespace AoC
             w.Turn("Left");
             Debug.WriteLine(w.Direction);
             w.Move(4);
+            Debug.WriteLine(w.Position);
+            w.Move("R5");
             Debug.WriteLine(w.Position);
             return 0;
         }
