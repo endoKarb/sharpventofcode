@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace AoC
 {
-    
+
     internal class Year2016Day1 : Solver
     {
         readonly string _text;
@@ -20,31 +20,41 @@ namespace AoC
             _text = File.ReadAllText(filepath);
         }
 
-        private static readonly Dictionary<Direction, (int X, int Y)> dirVectors = new()
+        private static readonly Dictionary<Direction, Coords> dirVectors = new()
         {
-            [Direction.North] = (0, +1),
-            [Direction.South] = (0, -1),
-            [Direction.East] = (+1, 0),
-            [Direction.West] = (-1, 0)
+            [Direction.North] = new Coords(x: 0, y: +1),
+            [Direction.South] = new Coords(x: 0, y: -1),
+            [Direction.East] = new Coords(x: +1, y: 0),
+            [Direction.West] = new Coords(x: -1, y: 0),
         };
-        
-        
 
-        
+        struct Coords
+        {
+            public Coords(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            public int X { get; }
+            public int Y { get; }
+        }
+
+
 
         private class Walker
         {
-            (int X, int Y) _position;
+            Coords _position;
             Direction _direction;
 
-            public Walker(Direction dir, (int X, int Y) pos)
+            public Walker(Direction dir, int x, int y)
             {
-                _position = pos;
+                _position = new Coords(x, y);
                 _direction = dir;
             }
 
             public Direction Direction { get { return _direction; } }
-            public (int X, int Y) Position { get { return _position; } }
+            public Coords Position { get { return _position; } }
 
             public void Turn(string verse)
             {
@@ -64,8 +74,8 @@ namespace AoC
 
             public void Move()
             {
-                var (X, Y) = dirVectors[_direction];
-                _position = (X: _position.X + X, Y: _position.Y + Y);
+                Coords v = dirVectors[_direction];
+                _position = new Coords(_position.X + v.X, _position.Y + v.Y);
             }
 
             public void Move(int steps)
@@ -80,7 +90,7 @@ namespace AoC
 
         override public int SolvePart1()
         {
-            var w = new Walker(pos: (X: 0, Y: 0), dir: Direction.North);
+            var w = new Walker(x: 0, y: 0, dir: Direction.North);
             w.Turn("Left");
             Debug.WriteLine(w.Direction);
             w.Move(4);
