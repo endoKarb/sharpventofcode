@@ -32,7 +32,7 @@
             this.CboDay = new System.Windows.Forms.ComboBox();
             this.OfdInputFile = new System.Windows.Forms.OpenFileDialog();
             this.BtnInputFile = new System.Windows.Forms.Button();
-            this.BtnSolve = new System.Windows.Forms.Button();
+            this.BtnSolvePart1 = new System.Windows.Forms.Button();
             this.TxtPart1 = new System.Windows.Forms.TextBox();
             this.TxtPart2 = new System.Windows.Forms.TextBox();
             this.LblPart1 = new System.Windows.Forms.Label();
@@ -76,16 +76,16 @@
             this.BtnInputFile.UseVisualStyleBackColor = true;
             this.BtnInputFile.Click += new System.EventHandler(this.BtnInputFile_Click);
             // 
-            // BtnSolve
+            // BtnSolvePart1
             // 
-            this.BtnSolve.Enabled = false;
-            this.BtnSolve.Location = new System.Drawing.Point(395, 287);
-            this.BtnSolve.Name = "BtnSolve";
-            this.BtnSolve.Size = new System.Drawing.Size(166, 32);
-            this.BtnSolve.TabIndex = 3;
-            this.BtnSolve.Text = "Solve";
-            this.BtnSolve.UseVisualStyleBackColor = true;
-            this.BtnSolve.Click += new System.EventHandler(this.BtnSolve_Click);
+            this.BtnSolvePart1.Enabled = false;
+            this.BtnSolvePart1.Location = new System.Drawing.Point(395, 287);
+            this.BtnSolvePart1.Name = "BtnSolvePart1";
+            this.BtnSolvePart1.Size = new System.Drawing.Size(166, 32);
+            this.BtnSolvePart1.TabIndex = 3;
+            this.BtnSolvePart1.Text = "Solve Part 1";
+            this.BtnSolvePart1.UseVisualStyleBackColor = true;
+            this.BtnSolvePart1.Click += new System.EventHandler(this.BtnSolve_Click);
             // 
             // TxtPart1
             // 
@@ -130,7 +130,7 @@
             this.BtnSolvePart2.TabIndex = 8;
             this.BtnSolvePart2.Text = "Solve Part 2";
             this.BtnSolvePart2.UseVisualStyleBackColor = true;
-            this.BtnSolvePart2.Click += new System.EventHandler(this.BtnSolvePart2_Click);
+            this.BtnSolvePart2.Click += new System.EventHandler(this.BtnSolve_Click);
             // 
             // FrmSolver
             // 
@@ -142,7 +142,7 @@
             this.Controls.Add(this.LblPart1);
             this.Controls.Add(this.TxtPart2);
             this.Controls.Add(this.TxtPart1);
-            this.Controls.Add(this.BtnSolve);
+            this.Controls.Add(this.BtnSolvePart1);
             this.Controls.Add(this.BtnInputFile);
             this.Controls.Add(this.CboDay);
             this.Controls.Add(this.CboYear);
@@ -159,7 +159,7 @@
         private System.Windows.Forms.ComboBox CboDay;
         private System.Windows.Forms.OpenFileDialog OfdInputFile;
         private System.Windows.Forms.Button BtnInputFile;
-        private System.Windows.Forms.Button BtnSolve;
+        private System.Windows.Forms.Button BtnSolvePart1;
         private System.Windows.Forms.TextBox TxtPart1;
         private System.Windows.Forms.TextBox TxtPart2;
         private System.Windows.Forms.Label LblPart1;

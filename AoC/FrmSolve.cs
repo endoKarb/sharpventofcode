@@ -31,7 +31,7 @@ namespace AoC
         {
             if (OfdInputFile.ShowDialog() == DialogResult.OK)
             {
-                BtnSolve.Enabled = true;
+                BtnSolvePart1.Enabled = true;
                 BtnSolvePart2.Enabled = true;
             }
         }
@@ -43,17 +43,18 @@ namespace AoC
             day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
             string path = OfdInputFile.FileName;
             var slv = CreateSolver(year, day, path);
-            TxtPart1.Text = $"{slv.SolvePart1()}";
-        }
-
-        private void BtnSolvePart2_Click(object sender, EventArgs e)
-        {
-            string year = CboYear.GetItemText(CboYear.SelectedItem);
-            string day = CboDay.GetItemText(CboDay.SelectedItem);
-            day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
-            string path = OfdInputFile.FileName;
-            var slv = CreateSolver(year, day, path);
-            TxtPart2.Text = $"{slv.SolvePart2()}";
+            Debug.WriteLine(((Button)sender).Name);
+            switch (((Button)sender).Name)
+            {
+                case "BtnSolvePart1":
+                    TxtPart1.Text = $"{slv.SolvePart1()}";
+                    break;
+                case "BtnSolvePart2":
+                    TxtPart2.Text = $"{slv.SolvePart2()}";
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
