@@ -46,7 +46,13 @@
             this.CboYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboYear.FormattingEnabled = true;
             this.CboYear.Items.AddRange(new object[] {
-            "2015"});
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021"});
             this.CboYear.Location = new System.Drawing.Point(132, 106);
             this.CboYear.Name = "CboYear";
             this.CboYear.Size = new System.Drawing.Size(182, 23);
