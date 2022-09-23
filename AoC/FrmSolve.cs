@@ -28,13 +28,13 @@ namespace AoC
                 BtnSolve.Enabled = true;
             }
         }
-        Solver CreateSolver(string year, string day, string inputPath)
+        static Solver CreateSolver(string year, string day, string inputPath)
         {
             Type t = Type.GetType($"AoC.Year{year}{day}");
             object? o = Activator.CreateInstance(t, inputPath);
             object s = o ?? -1;
             Debug.WriteLine(s.GetType());
-            return (Solver) s;
+            return (Solver)s;
         }
 
         private void BtnSolve_Click(object sender, EventArgs e)
@@ -43,7 +43,6 @@ namespace AoC
             string day = CboDay.GetItemText(CboDay.SelectedItem);
             day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
             string path = openFileDialog1.FileName;
-            //Debug.WriteLine(path);
             var slv = CreateSolver(year, day, path);
         }
     }
