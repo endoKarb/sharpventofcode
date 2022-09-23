@@ -61,7 +61,7 @@ namespace AoC
             public void Move()
             {
                 Coords v = dirVectors[_direction];
-                _position = _position + v;
+                _position += v;
             }
 
             public void Move(int steps)
@@ -88,16 +88,13 @@ namespace AoC
 
         override public int SolvePart1()
         {
-            var inp = ParseInput();
+            string[] directions = ParseInput();
             var startPos = new Coords(0, 0);
-            Debug.WriteLine(inp[0]);
             var w = new Walker(x: 0, y: 0, dir: Direction.North);
-            w.Turn("Left");
-            Debug.WriteLine(w.Direction);
-            w.Move(4);
-            Debug.WriteLine(w.Position);
-            w.Move("R5");
-            Debug.WriteLine(w.Position);
+            foreach (string mv in directions)
+            {
+                w.Move(mv);
+            }
             return Coords.ManhDist(w.Position, startPos);
         }
 
