@@ -7,7 +7,7 @@ using System.IO;
 
 namespace AoC
 {
-    internal class Year2015Day1 : AoCSolver
+    internal class Year2015Day1 : Solver
     {
         readonly string _text;
         public Year2015Day1(string filepath)

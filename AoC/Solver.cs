@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AoC
 {
-    interface Solver
+    interface ISolver
     {
         abstract public int SolvePart1();
         abstract public int SolvePart2();
     }
-    abstract internal class AoCSolver : Solver
+    abstract internal class Solver : ISolver
     {
         protected string _filepath;
         abstract public int SolvePart1();
