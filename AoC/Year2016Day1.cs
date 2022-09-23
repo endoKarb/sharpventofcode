@@ -5,15 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
+using static AoC.Utils;
+
 namespace AoC
 {
-    public enum Direction
-    {
-        North = 0,
-        East = 1,
-        South = 2,
-        West = 3,
-    }
+    
     internal class Year2016Day1 : Solver
     {
         readonly string _text;
@@ -33,13 +29,6 @@ namespace AoC
             };
             var pos = Direction.North;
             return (int)Turn(pos, "L");
-        }
-
-        static private int Mod(int a, int b)
-        {
-            b = b >= 0 ? b : -b;
-            a = a >= 0 ? a : b + a;
-            return a % b;
         }
 
         static private Direction Turn(Direction d, string t)
