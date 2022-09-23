@@ -14,13 +14,11 @@ namespace AoC
 {
     public partial class Form1 : Form
     {
-        public Dictionary<string, Type> solvers;
         public Form1()
         {
             InitializeComponent();
             CboYear.SelectedIndex = 0;
             CboDay.SelectedIndex = 0;
-            solvers = InitSolvers();
         }
 
         private void BtnInputFile_Click(object sender, EventArgs e)
@@ -30,16 +28,10 @@ namespace AoC
                 BtnSolve.Enabled = true;
             }
         }
-        private Dictionary<string, Type> InitSolvers()
-        {
-            return new Dictionary<string, Type>
-            {
-                ["2015-Day 1"] = new _2015Day1Solver("path").GetType()
-            };
-        }
         Solver CreateSolver(string year, string day, string inputPath)
         {
-            object? o = Activator.CreateInstance(solvers[$"{year}-{day}"], inputPath);
+            Type t = Type.GetType($"AoC.Year{year}{day}");
+            object? o = Activator.CreateInstance(t, inputPath);
             object s = o ?? -1;
             Debug.WriteLine(s.GetType());
             return (Solver) s;
@@ -49,8 +41,9 @@ namespace AoC
         {
             string year = CboYear.GetItemText(CboYear.SelectedItem);
             string day = CboDay.GetItemText(CboDay.SelectedItem);
+            day = string.Concat(day.Where(c => !char.IsWhiteSpace(c)));
             string path = openFileDialog1.FileName;
-            Debug.WriteLine(path);
+            //Debug.WriteLine(path);
             var slv = CreateSolver(year, day, path);
         }
     }

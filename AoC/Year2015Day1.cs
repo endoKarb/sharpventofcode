@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AoC
 {
-    internal class _2015Day1Solver : Solver
+    internal class Year2015Day1 : Solver
     {
-        public _2015Day1Solver(string filepath)
+        public Year2015Day1(string filepath)
         {
             _filepath = filepath;
         }
