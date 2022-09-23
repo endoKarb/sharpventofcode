@@ -38,6 +38,7 @@
             this.LblPart1 = new System.Windows.Forms.Label();
             this.LblPart2 = new System.Windows.Forms.Label();
             this.BtnSolvePart2 = new System.Windows.Forms.Button();
+            this.BtnWebpage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CboYear
@@ -132,11 +133,22 @@
             this.BtnSolvePart2.UseVisualStyleBackColor = true;
             this.BtnSolvePart2.Click += new System.EventHandler(this.BtnSolve_Click);
             // 
+            // BtnWebpage
+            // 
+            this.BtnWebpage.Location = new System.Drawing.Point(270, 42);
+            this.BtnWebpage.Name = "BtnWebpage";
+            this.BtnWebpage.Size = new System.Drawing.Size(193, 29);
+            this.BtnWebpage.TabIndex = 9;
+            this.BtnWebpage.Text = "Open the problem\'s webpage";
+            this.BtnWebpage.UseVisualStyleBackColor = true;
+            this.BtnWebpage.Click += new System.EventHandler(this.BtnWebpage_Click);
+            // 
             // FrmSolver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnWebpage);
             this.Controls.Add(this.BtnSolvePart2);
             this.Controls.Add(this.LblPart2);
             this.Controls.Add(this.LblPart1);
@@ -165,5 +177,6 @@
         private System.Windows.Forms.Label LblPart1;
         private System.Windows.Forms.Label LblPart2;
         private System.Windows.Forms.Button BtnSolvePart2;
+        private System.Windows.Forms.Button BtnWebpage;
     }
 }

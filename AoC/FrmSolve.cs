@@ -5,6 +5,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,28 @@ namespace AoC
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void BtnWebpage_Click(object sender, EventArgs e)
+        {
+            string year = CboYear.GetItemText(CboYear.SelectedItem);
+            string day= CboYear.GetItemText(CboDay.SelectedItem);
+            Debug.WriteLine(day);
+            day = day.Split(' ')[1];
+            string target = $"https://adventofcode.com/{year}/day/{day}";
+            try
+            {
+                Process.Start(new ProcessStartInfo(target) { UseShellExecute = true });
+            }
+            catch (Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                    MessageBox.Show(noBrowser.Message);
+            }
+            catch (Exception other)
+            {
+                MessageBox.Show(other.Message);
             }
         }
     }
