@@ -65,7 +65,7 @@
             // 
             this.BtnInputFile.Location = new System.Drawing.Point(113, 287);
             this.BtnInputFile.Name = "BtnInputFile";
-            this.BtnInputFile.Size = new System.Drawing.Size(162, 32);
+            this.BtnInputFile.Size = new System.Drawing.Size(163, 32);
             this.BtnInputFile.TabIndex = 2;
             this.BtnInputFile.Text = "Load File...";
             this.BtnInputFile.UseVisualStyleBackColor = true;
@@ -73,6 +73,7 @@
             // 
             // BtnSolve
             // 
+            this.BtnSolve.Enabled = false;
             this.BtnSolve.Location = new System.Drawing.Point(395, 287);
             this.BtnSolve.Name = "BtnSolve";
             this.BtnSolve.Size = new System.Drawing.Size(166, 32);

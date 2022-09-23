@@ -14,44 +14,44 @@ namespace AoC
 {
     public partial class Form1 : Form
     {
-        string? filepath;
         public Dictionary<string, Type> solvers;
         public Form1()
         {
             InitializeComponent();
             CboYear.SelectedIndex = 0;
             CboDay.SelectedIndex = 0;
-            InitSolver();
+            solvers = InitSolvers();
         }
 
         private void BtnInputFile_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                filepath = openFileDialog1.FileName;
-            } else
-            {
-                filepath = null;
+                BtnSolve.Enabled = true;
             }
         }
-        private void InitSolver()
+        private Dictionary<string, Type> InitSolvers()
         {
-            solvers = new Dictionary<string, Type>
+            return new Dictionary<string, Type>
             {
                 ["2015-Day 1"] = new _2015Day1Solver("path").GetType()
             };
         }
-        void s(string year, string day)
+        Solver CreateSolver(string year, string day, string inputPath)
         {
-            Object o = Activator.CreateInstance(solvers[$"{year}-{day}"], "filepath");
-            Debug.WriteLine(o.GetType());
+            object? o = Activator.CreateInstance(solvers[$"{year}-{day}"], inputPath);
+            object s = o ?? -1;
+            Debug.WriteLine(s.GetType());
+            return (Solver) s;
         }
 
         private void BtnSolve_Click(object sender, EventArgs e)
         {
             string year = CboYear.GetItemText(CboYear.SelectedItem);
             string day = CboDay.GetItemText(CboDay.SelectedItem);
-            s(year, day);
+            string path = openFileDialog1.FileName;
+            Debug.WriteLine(path);
+            var slv = CreateSolver(year, day, path);
         }
     }
 }
