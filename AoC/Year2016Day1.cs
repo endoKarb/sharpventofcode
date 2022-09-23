@@ -27,37 +27,65 @@ namespace AoC
             [Direction.East] = (+1, 0),
             [Direction.West] = (-1, 0)
         };
-        override public int SolvePart1()
+        
+        
+
+        
+
+        private class Walker
         {
-            var pos = (X: 0, Y: 0);
-            var dir = Direction.North;
-            dir = Turn(dir, "L");
-            Debug.WriteLine($"{dir}");
-            pos = Move(pos, dir);
-            Debug.WriteLine($"{pos}");
-            return 0;
-        }
-        static private (int X, int Y) Move((int X, int Y) p, Direction d)
-        {
-            var (X, Y) = dirVectors[d];
-            return (X: p.X + X, Y: p.Y + Y);
+            (int X, int Y) _position;
+            Direction _direction;
+
+            public Walker(Direction dir, (int X, int Y) pos)
+            {
+                _position = pos;
+                _direction = dir;
+            }
+
+            public Direction Direction { get { return _direction; } }
+            public (int X, int Y) Position { get { return _position; } }
+
+            public void Turn(string verse)
+            {
+                char v = verse.ToLower()[0];
+                switch (v)
+                {
+                    case 'l':
+                        _direction = _direction.Left();
+                        break;
+                    case 'r':
+                        _direction = _direction.Right();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            public void Move()
+            {
+                var (X, Y) = dirVectors[_direction];
+                _position = (X: _position.X + X, Y: _position.Y + Y);
+            }
+
+            public void Move(int steps)
+            {
+                if (steps > 0)
+                {
+                    Move();
+                    Move(steps - 1);
+                }
+            }
         }
 
-        static private Direction Turn(Direction d, string t)
+        override public int SolvePart1()
         {
-            int newD = (int) d;
-            switch (t[0])
-            {
-                case 'L':
-                    newD--;
-                    break;
-                case 'R':
-                    newD++;
-                    break;
-                default:
-                    break;
-            }
-            return (Direction)Mod(newD, 4);
+            var w = new Walker(pos: (X: 0, Y: 0), dir: Direction.North);
+            w.Turn("Left");
+            Debug.WriteLine(w.Direction);
+            w.Move(4);
+            Debug.WriteLine(w.Position);
+            return 0;
         }
 
         override public int SolvePart2()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AoC
 {
-    internal class Utils
+    internal static class Utils
     {
         public enum Direction
         {
@@ -15,7 +15,15 @@ namespace AoC
             South,
             West
         }
-        static public int Mod(int a, int b)
+        public static Direction Right (this Direction d)
+        {
+            return d == Direction.West ? Direction.North : d++;
+        }
+        public static Direction Left(this Direction d)
+        {
+            return d == Direction.North ? Direction.West : d--;
+        }
+        public static int Mod(int a, int b)
         {
             b = b >= 0 ? b : -b;
             a = a >= 0 ? a : b + a;
