@@ -22,11 +22,9 @@ namespace AoC
         }
         static ISolver CreateSolver(string year, string day, string inputPath)
         {
-            Type t = Type.GetType($"AoC.Year{year}{day}");
-            object? o = Activator.CreateInstance(t, inputPath);
-            object s = o ?? -1;
-            Debug.WriteLine(s.GetType());
-            return (ISolver)s;
+            Type t = Type.GetType($"AoC.Year{year}{day}") ?? throw new Exception("Invalid Type");
+            object o = Activator.CreateInstance(t, inputPath) ?? throw new Exception("");
+            return (ISolver)o;
         }
 
         private void BtnInputFile_Click(object sender, EventArgs e)
@@ -37,7 +35,7 @@ namespace AoC
                 BtnSolvePart2.Enabled = true;
             }
         }
-        
+
         private void BtnSolve_Click(object sender, EventArgs e)
         {
             string year = CboYear.GetItemText(CboYear.SelectedItem);
