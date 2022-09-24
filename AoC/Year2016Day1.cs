@@ -31,15 +31,13 @@ namespace AoC
     }
     internal class Year2016Day1 : Solver
     {
-        readonly string _text;
-        readonly private InputData _instr;
+        private readonly InputData _instr;
+        private readonly Coords _startPos = new(0, 0);
         public Year2016Day1(string filepath)
         {
             _filepath = filepath;
-            _text = File.ReadAllText(filepath);
-            _instr = new InputData(_text);
+            _instr = new InputData(File.ReadAllText(filepath));
         }
-
         private static readonly Dictionary<Direction, Coords> dirVectors = new()
         {
             [Direction.North] = new Coords(x: 0, y: +1),
@@ -47,6 +45,36 @@ namespace AoC
             [Direction.East] = new Coords(x: +1, y: 0),
             [Direction.West] = new Coords(x: -1, y: 0),
         };
+        private class InputData
+        {
+            private readonly string[] _instr;
+            private readonly List<Coords> _steps = new();
+            public InputData(string inputText)
+            {
+                _instr = inputText.Split(", ");
+                ParseInput();
+            }
+            private void Add(Coords c, int n)
+            {
+                if (n > 0)
+                {
+                    _steps.Add(c);
+                    Add(c, n - 1);
+                }
+            }
+            private void ParseInput()
+            {
+                Regex firstNum = new(@"\d+");
+                Direction d = Direction.North;
+                foreach (string instruction in _instr)
+                {
+                    d = d.ChangeDirection(instruction);
+                    int steps = int.Parse(firstNum.Match(instruction).Value);
+                    Add(dirVectors[d], steps);
+                }
+            }
+            public Coords[] Steps { get => _steps.ToArray(); }
+        }
         private class Walker
         {
             Coords _position;
@@ -104,72 +132,29 @@ namespace AoC
                 _position += mvVector;
             }
         }
-
-        private string[] ParseInput()
-        {
-            return _text.Split(", ");
-        }
-
         override public int SolvePart1()
         {
-            string[] directions = ParseInput();
-            var startPos = new Coords(0, 0);
+            
             Walker w = new(x: 0, y: 0, dir: Direction.North);
-            foreach (string mv in directions)
+            foreach (Coords step in _instr.Steps)
             {
-                w.Move(mv);
+                w.Move(step);
             }
-            return Coords.ManhDist(w.Position, startPos);
+            return Coords.ManhDist(w.Position, _startPos);
         }
-
-        private class InputData
-        {
-            private readonly string[] _instr;
-            private readonly List<Coords> _steps = new();
-            public InputData(string inputText)
-            {
-                _instr = inputText.Split(", ");
-                ParseInput();
-            }
-
-            private void Add(Coords c, int n)
-            {
-                if (n > 0)
-                {
-                    _steps.Add(c);
-                    Add(c, n - 1);
-                }
-            }
-
-            private void ParseInput()
-            {
-                Regex firstNum = new(@"\d+");
-                Direction d = Direction.North;
-                foreach (string instruction in _instr)
-                {
-                    d = d.ChangeDirection(instruction);
-                    int steps = int.Parse(firstNum.Match(instruction).Value);
-                    Add(dirVectors[d], steps);
-                }
-            }
-
-            public Coords[] Steps { get => _steps.ToArray(); }
-        }
-
         override public int SolvePart2()
         {
-            var startPos = new Coords(0, 0);
             Walker w = new(x: 0, y: 0, dir: Direction.North);
             HashSet<Coords> visited = new()
             {
-                startPos
+                _startPos
             };
             foreach (Coords step in _instr.Steps)
             {
                 w.Move(step);
                 if (visited.Contains(w.Position))
                 {
-                    return Coords.ManhDist(w.Position, startPos);
+                    return Coords.ManhDist(w.Position, _startPos);
                 }
                 visited.Add(w.Position);
             }
