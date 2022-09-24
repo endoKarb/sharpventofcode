@@ -154,11 +154,79 @@ namespace AoC
                 w.Move(step);
                 if (visited.Contains(w.Position))
                 {
+                    SolvePart2AndDraw();
                     return Coords.ManhDist(w.Position, _startPos);
                 }
                 visited.Add(w.Position);
             }
             return -1;
+        }
+
+        public int SolvePart2AndDraw()
+        {
+            Walker w = new(x: 0, y: 0, dir: Direction.North);
+            int minX = 0;
+            int minY = 0;
+            int maxX = 0;
+            int maxY = 0;
+            Coords firstIntersection = new(0, 0);
+            int solution = -1;
+            HashSet<Coords> visited = new()
+            {
+                _startPos
+            };
+            foreach (Coords step in _instr.Steps)
+            {
+                w.Move(step);
+                minX = w.Position.X < minX ? w.Position.X : minX;
+                maxX = w.Position.X > maxX ? w.Position.X : maxX;
+                minY = w.Position.Y < minY ? w.Position.Y : minY;
+                maxY = w.Position.Y > maxY ? w.Position.Y : maxY;
+                if (visited.Contains(w.Position))
+                {
+                    firstIntersection = w.Position;
+                    solution = Coords.ManhDist(firstIntersection, _startPos);
+                }
+                visited.Add(w.Position);
+            }
+            int offsetY = Math.Abs(minY);
+            int offsetX = Math.Abs(minX);
+            int[,] a = new int[maxY + offsetY + 1, maxX + offsetX + 1];
+            foreach (Coords c in visited)
+            {
+                a[maxY - (c.Y + Math.Abs(minY)), c.X + Math.Abs(minX)] = 1;
+            }
+            StringBuilder sb = new(a.GetLength(1)+1 * a.GetLength(0));
+            for (int i = 0; i < a.GetLength(0); i++)
+            {
+                for (int j = 0; j < a.GetLength(1); j++)
+                {
+                    if (i == maxY - offsetY && j == offsetX)
+                    {
+                        sb.Append('0');
+                    } else if (i == maxY - (offsetY + firstIntersection.Y) && j == offsetX + firstIntersection.X)
+                    {
+                        sb.Append('X');
+                    } else
+                    {
+                        switch (a[i, j])
+                        {
+                            case 0:
+                                sb.Append('.');
+                                break;
+                            case 1:
+                                sb.Append('#');
+                                break;
+                            default:
+                                break;
+                        }
+                    }                    
+                }
+                sb.Append('\n');
+            }
+            File.WriteAllText("./output.txt", sb.ToString());
+            //Debug.WriteLine(sb.ToString());
+            return solution;
         }
     }
 }
