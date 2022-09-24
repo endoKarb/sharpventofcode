@@ -61,8 +61,7 @@ namespace AoC
         private void BtnWebpage_Click(object sender, EventArgs e)
         {
             string year = CboYear.GetItemText(CboYear.SelectedItem);
-            string day= CboYear.GetItemText(CboDay.SelectedItem);
-            Debug.WriteLine(day);
+            string day = CboYear.GetItemText(CboDay.SelectedItem);
             day = day.Split(' ')[1];
             string target = $"https://adventofcode.com/{year}/day/{day}";
             try
